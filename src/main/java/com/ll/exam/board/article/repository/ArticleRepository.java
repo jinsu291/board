@@ -15,4 +15,10 @@ public interface ArticleRepository {
 
     @Insert("INSERT INTO article SET createDate = NOW(), modifyDate = NOW(), subject = #{subject}, content = #{content}")
     void write(String subject, String content);
+
+    @Select("SELECT LAST_INSERT_ID()")
+    public long getLastInsertId();
+
+    @Select("SELECT * FROM article WHERE id = #{id}")
+    Article getArticleById(long id);
 }
