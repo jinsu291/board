@@ -1,5 +1,6 @@
 package com.ll.exam.board.member.controller;
 
+import com.ll.exam.board.base.Rq;
 import com.ll.exam.board.member.dto.Member;
 import com.ll.exam.board.member.service.MemberService;
 import com.ll.exam.board.util.Util;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 public class MemberController {
     private final MemberService memberService;
+    private final Rq rq;
 
     @GetMapping("/member/login")
     public String showLogin() {
@@ -32,6 +34,7 @@ public class MemberController {
             return "redirect:/?msg=" + Util.url.encode("패스워드가 일치하지 않습니다.");
         }
 
+        rq.setName(member.getName());
         session.setAttribute("loginedMemberId", member.getId());
 
         return "redirect:/?msg=" + Util.url.encode("로그인 성공");
