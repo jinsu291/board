@@ -1,6 +1,7 @@
 package com.ll.exam.board.article.repository;
 
 import com.ll.exam.board.article.dto.Article;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -11,4 +12,7 @@ public interface ArticleRepository {
 
     @Select("SELECT * FROM article")
     public List<Article> getArticles();
+
+    @Insert("INSERT INTO article SET createDate = NOW(), modifyDate = NOW(), subject = #{subject}, content = #{content}")
+    void write(String subject, String content);
 }

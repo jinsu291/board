@@ -15,4 +15,8 @@ public class ArticleService {
     public List<Article> getArticles() {
         return articleRepository.getArticles();
     }
+
+    public void write(String subject, String content) {
+        articleRepository.write(subject, content);
+    }
 }
