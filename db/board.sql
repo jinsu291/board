@@ -1,0 +1,4 @@
+# DEV DB
+DROP DATABASE IF EXISTS board;
+CREATE DATABASE board;
+USE board;
