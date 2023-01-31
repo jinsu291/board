@@ -1,6 +1,7 @@
 package com.ll.exam.board.base;
 
 import com.ll.exam.board.interceptor.BeforeActionInterceptor;
+import com.ll.exam.board.interceptor.NeedToLoginInterceptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RequiredArgsConstructor
 public class WebMvcConfig implements WebMvcConfigurer {
     private final BeforeActionInterceptor beforeActionInterceptor;
+    private final NeedToLoginInterceptor needToLoginInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -22,5 +24,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
         ir.excludePathPatterns("/resource/**");
         ir.excludePathPatterns("/gen/**");
         ir.excludePathPatterns("/error");
+
+        ir = registry.addInterceptor(needToLoginInterceptor);
+        ir.addPathPatterns("/article/write");
+        ir.addPathPatterns("/member/me");
     }
 }
