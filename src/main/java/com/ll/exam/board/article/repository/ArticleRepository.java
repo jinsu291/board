@@ -3,6 +3,7 @@ package com.ll.exam.board.article.repository;
 import com.ll.exam.board.article.dto.Article;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface ArticleRepository {
     public List<Article> getArticles();
 
     @Insert("INSERT INTO article SET createDate = NOW(), modifyDate = NOW(), subject = #{subject}, content = #{content}")
-    void write(String subject, String content);
+    void write(@Param("subject") String subject, @Param("content") String content);
 
     @Select("SELECT LAST_INSERT_ID()")
     public long getLastInsertId();

@@ -25,7 +25,6 @@ class BoardApplicationTests {
 		assertThat(articles.size()).isGreaterThan(0);
 	}
 
-	// 나중에 해보기
 	@Test
 	@DisplayName("게시물 작성")
 	void t2() {
