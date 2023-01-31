@@ -56,9 +56,6 @@ username = 'user2',
 `name` = '유저2',
 email = 'user2@test.com';
 
-SELECT *
-FROM `member`;
-
 # 게시물에 작성자 정보 추가
 ALTER TABLE article
 ADD COLUMN member_id BIGINT UNSIGNED NOT NULL AFTER modifyDate;
@@ -70,3 +67,21 @@ SET member_id = 2;
 # 게시물에 작성자 정보 필드의 명명법을 camelCase 으로 변경
 ALTER TABLE article
     CHANGE member_id memberId BIGINT UNSIGNED NOT NULL;
+
+# 회원에 권한 정보 추가
+ALTER TABLE `member`
+    ADD COLUMN `roles` CHAR(50) NOT NULL AFTER modifyDate;
+
+# 기존 회원을 일반 회원으로
+UPDATE `member`
+SET roles = 'MEMBER';
+
+# admin 회원 추가
+INSERT INTO `member`
+SET createDate = NOW(),
+modifyDate = NOW(),
+roles = 'ADMIN,MEMBER',
+username = 'admin',
+`password` = '{noop}1234',
+`name` = '관리자',
+email = 'admin@test.com';
