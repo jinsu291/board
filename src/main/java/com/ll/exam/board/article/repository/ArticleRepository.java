@@ -22,4 +22,7 @@ public interface ArticleRepository {
 
     @Select("SELECT * FROM article WHERE id = #{id}")
     Article getArticleById(long id);
+
+    @Select("SELECT A.*, M.username AS extra_member_username, M.name AS extra_member_name FROM article AS A LEFT JOIN member AS M ON A.memberId = M.id")
+    List<Article> getForPrintArticles();
 }
