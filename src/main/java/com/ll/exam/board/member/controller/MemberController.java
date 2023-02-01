@@ -6,6 +6,7 @@ import com.ll.exam.board.member.service.MemberService;
 import com.ll.exam.board.util.Util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,6 +23,12 @@ public class MemberController {
     @ResponseBody
     public Member getMe() {
         return rq.getLoginedMember();
+    }
+
+    @GetMapping("/member/mypage")
+    public String showMypage(String username) {
+        Member member = memberService.getMemberByUsername(username);
+        return "member/mypage";
     }
 
     @GetMapping("/member/login")
