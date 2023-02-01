@@ -23,8 +23,6 @@ public class AdmArticleController {
     public String showList(Model model) {
         List<Article> articles = articleService.getForPrintArticles();
 
-        log.debug("articles : " + articles);
-
         model.addAttribute("articles", articles);
 
         return "adm/article/list";

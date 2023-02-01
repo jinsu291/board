@@ -26,12 +26,14 @@
     <a th:if="${@rq.logined}"  href="/member/mypage">[[${@rq.loginedMember.name}]]님의 마이페이지</a>
 </header>
 
-<main layout:fragment="main">
-
-</main>
-
-<footer>
-</footer>
+    <!-- 기본 템플릿 안에 삽입될 내용 Start -->
+    <th:block layout:fragment="main"></th:block>
+    <!-- 기본 템플릿 안에 삽입될 내용 End -->
+    <!-- Bootstrap JS -->
+    <script th:src="@{/bootstrap.min.js}"></script>
+    <!-- 자바스크립트 Start -->
+    <th:block layout:fragment="script"></th:block>
+    <!-- 자바스크립트 End -->
 
 </body>
 </html>
